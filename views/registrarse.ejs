@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<%- include('fragmentos/head'); %>
+  <body style="background: linear-gradient(90deg, rgb(14, 0, 3), rgb(51, 18, 10));">
+    <%- include('fragmentos/navbar'); %> 
+    <br><hr><hr><hr>
+      <div class="page-header"> 
+        <div class="row ">
+          <div class="col-lg-6 col-md-9 ml-auto mr-auto card card-login">
+            <div class="text-center">
+              <form class="form" action="/registrarse" method="POST">
+                <div class="card-header col-md-6 mx-auto card-header-warning text-center">
+                  <h4 class="card-title">Registrarse</h4>                
+<%if (signinMessage != null) {%>
+  <div class="bg-danger"><p ><%= signinMessage %></p></div> 
+<% } if (signupMessage  != null) {%>
+  <div class="bg-danger"><p><%= signupMessage %></p></div> 
+<% } %>
+                </div>
+                <div class="card-body px-0" style="margin-top: 30px;">
+                  <div class="row d-flex mx-2">
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-envelope-o"></i>
+                          </span>
+                        </div>
+                        <input type="Email" class="form-control" name="email" placeholder="Correo Electrónico">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-envelope-o"></i>
+                          </span>
+                        </div>
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                      </div>
+                    </div><div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-envelope-o"></i>
+                          </span>
+                        </div>
+                        <input type="password" class="form-control" name="password2" placeholder="Verificar contraseña">
+                      </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-user-o"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="name" placeholder="Nombres">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="surname" placeholder="Apellidos">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-id-card"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="cedula" placeholder="Cédula">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-address-card"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="dir" placeholder="Dirección">
+                      </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-mobile"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="phone" placeholder="Teléfono">
+                      </div>
+                    </div>
+                  </div> 
+                </div><button class="btn text-center btn-success  btn-wd btn-lg col-md-4 mx-auto ">Registrarse</button><br>
+            </div>
+            
+          </div>
+          </form>
+        </div>
+      </div>
+      </div>
+      </div>
+      <footer class="footer footer-default text-white">
+        <div class="container">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="/menu">
+                  Ir al Menú
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Registrarse
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                 LICENCIA
+
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+          </div>
+        </div>
+      </footer>
+  </body>
+
+</html>

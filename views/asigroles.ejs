@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+  <%- include('fragmentos/head'); %> 
+  <body style="background: linear-gradient(90deg, rgb(14, 0, 3), rgb(51, 18, 10));">
+    <%- include('fragmentos/navbar'); %> <hr>
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/fondo.jpg')">
+    <div class="container">  <% if (!user ) { %>
+        <div class="card text-white  mx-auto col-md-6 col-lg-6 " style="background-color: black;"> 
+      
+            <h3 class="mr-auto"> El acceso a este apartado está restringido para algunos usuarios, ponte en contacto con el administrador.</h4>
+           
+            
+              <div class="copyright float-right text-white">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+              </div>
+            </div> 
+      <% }else if ( user.rol == 1) { %>
+        <div class="card text-white  mx-auto col-md-6 col-lg-6 " style="background-color: black;"> 
+      
+            <h3 class="mr-auto"> <%= user.name %> <%= user.surname %>,  El acceso a este apartado está restringido para algunos usuarios, ponte en contacto con el administrador.</h4>
+           
+            
+              <div class="copyright float-right text-white">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+              </div>
+            </div> 
+  <% } else if (user.rol == 2) { %> 
+     
+    <div class="section card" style=" position: absolute;margin-top: -27%;">
+      <div class="container text-dark" style="margin-top: -6%;"> 
+          <h3 class="mr-auto ">Asignación de Roles </h4>
+              <h4>Usuario: <b><%= user.name %> <%= user.surname %></b></h4>
+              <div class="  bg-dark">
+                <nav class="bg-danger"> <h4  class="text-white"> Todos los Usuarios:</h4></nav>
+                 <hr> <br>
+                  <% for(var i=0;i<users.length;i++) { %> 
+                 <div  class="card container  bg-white text-dark col-md-7 mx-auto" style="background-color:000;opacity: 0.98; margin-top: -3%;">
+                   <div > 
+                    <b class="text-primary"><%= i+1 %>  <%= users[i].name %> <%= users[i].surname %></b> <br> 
+                    <b>Email: <%= users[i].email %></b> <br> 
+                    <b>CI:  <%= users[i].cedula %></b><br> 
+                    <b>Dirección:  <%= users[i].dir %></b><br> 
+                     <b>Nivel de acceso:   <b class="text-success"><%= users[i].rol %></b> </b>  
+                 </div>
+                 </div><br> 
+               <% } %>  
+      </div>
+  </div><br>
+  <div class=" bg-dark">
+      <h4 class="text-white">Otras acciones:</h4> 
+      <a href="/administrar" class="btn btn-success"><i class="fa fa-map"></i> Administrar Platillos</a>
+      <a href="/verpagos" class="btn btn-rose"><i class="fa fa-eye" aria-hidden="true"></i> Ver pagos</a>
+  </div>
+    <div class="copyright float-right text-dark mr-auto">
+      ©
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+    </div>
+  </div>  
+  
+    <% } else if (user.rol == 3) { %> 
+         
+        <div class="section card p-auto" style=" position: absolute;margin-top: -21%;">
+            <div class="col-12  " > 
+                <h3 class="mr-auto ">Asignación de Roles </h4>
+                    <h4>Usuario: <b><%= user.name %> <%= user.surname %></b></h4>
+                    <div class="col-12 col-sm-9 col-md-9 p-1" style="height: 35px">
+                      <div class="input-group input-group-sm m-0">
+                        <div class="row mx-0 w-100">
+                          <span
+                            class="col-3 input-group-text"
+                            id="inputGroup-sizing-sm"
+                            >Buscar:</span
+                          >
+                          <div class="col-9 px-auto">
+                            <form action="/roles?_method=DELETE" method="POST">
+                              <input
+                              type="text"
+                              class="form-control"
+                              aria-label="Nombre"
+                              aria-describedby="basic-addon1"
+                              name="buscar"
+                              onchange="form.submit();"
+                              value="<%=buscar%> "
+                            /> 
+                            </form>
+                            <!-- <input type="button" class="form-control" value="Pinchame y verás"  /> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr> 
+                  <div class="container col-12 pb-4  mx-auto"  >
+                    <div class="card p-auto col-md-8  mx-auto">
+                      <div class="  mx-auto">
+                        <div class="row"> 
+                          <div class="  overflow-auto" style="height: 300px;">
+
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col"> </th>
+                                  <th scope="col">Usuario</th> 
+                                  <th scope="col">Correo</th>
+                                  <th scope="col">Nivel de acceso</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% for(var i=0;i<users.length;i++) { %> 
+                                  <tr>
+                                    <th scope="row">
+                                      <%=(i+1)%>
+                                    </th>
+                                    <td>
+                                      <%= users[i].name %> <%= users[i].surname %>
+                                    </td>
+                                    <td>
+                                      <%= users[i].email %>
+                                    </td> 
+                                    <td>
+                                      <% if (users[i].rol == 1) { %> 
+                                        <a class="btn btn-danger btn-sm" href="/guardarol/<%= users[i].id %>">  Cambiar rol a administrador </a>
+                                   
+                                       <% } else if (users[i].rol == 2) { %> <a class="btn btn-success btn-sm" href="/guardarol/<%= users[i].id %>"> Cambiar rol a Cliente</a>
+                                           <% } %> 
+                                    </td>
+                                  </tr>
+                                  <% } %>
+
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                     
+        </div><br>
+        <div class="text-center bg-dark">
+            <h4 class="text-white">Otras acciones:</h4>
+            <a href="/administrar" class="btn btn-success"><i class="fa fa-map"></i> Administrar Platillos</a>
+            <a href="/verpagos" class="btn btn-rose"><i class="fa fa-eye" aria-hidden="true"></i> Ver pagos</a> 
+        </div>
+          <div class="text-center copyright float-right text-dark mx-auto">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+          </div>
+        </div> 
+      
+        <% } %> 
+ </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <%- include('fragmentos/head'); %> 
+  <body style="background: linear-gradient(90deg, rgb(14, 0, 3), rgb(51, 18, 10));">
+    <%- include('fragmentos/navbar'); %> <hr><hr> <hr>  
+    <div class="container" >
+      <div class="row page-header  ">
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-login">
+            <form class="form" method="POST" action="/login">
+              <div class="card-header card-header-success text-center">
+                <h4 class="card-title">Iniciar Sesión</h4>
+                <%if (signinMessage != null) {%>
+                  
+                  <div class="bg-danger"><p ><%= signinMessage %></p></div> 
+                <% } if (signupMessage  != null) {%>
+                  <div class="bg-danger"><p><%= signupMessage %></p></div> 
+                <% } %>
+              </div>
+              <div class="card-body" style = "margin-top: 100px;">
+                <span class="bmd-form-group"><div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-address-card"></i>
+                    </span>
+                  </div>
+                  <hr>
+                  <input type="text" class="form-control" name="email" placeholder="Usuario..." autofocus>
+                </div></span>
+                <span class="bmd-form-group"><div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-key"></i>
+                    </span>
+                  </div>
+                  <input type="password" class="form-control" name="password" placeholder="Contraseña...">
+                </div></span>
+              </div>
+              <div class="footer text-center" style="margin-top: 50px;">
+                <button class="btn btn-success btn-link btn-wd btn-lg">Iniciar Sesión </button> 
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <footer class="footer footer-default text-white">
+    <div class="container">
+      <nav class="float-left">
+        <ul> 
+          <li>
+            <a href="/menu">
+              Ir al Menú
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Registrarse
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Licencia
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+      </div>
+    </div>
+  </footer>
+ </body>
+</html>

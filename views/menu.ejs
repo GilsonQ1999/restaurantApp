@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+
+<%- include('fragmentos/head'); %>
+
+  <body class=" bg-dark text-white" style="background: linear-gradient(90deg, rgb(14, 0, 3), rgb(51, 18, 10));">
+    <%- include('fragmentos/navbar'); %>
+      <div style="background-image: url('../assets/img/fondo.jpg')">
+        <div class=" ">
+          <section class=" u-align-center u-clearfix u-grey-10 u-section-1" id="carousel_4daf"
+            style="background-image: url('../assets/img/fondo.jpg')">
+            <div class="u-clearfix u-sheet u-valign-middle u-sheet-1 " style="margin-top: 100px;">
+              <h1 class=" u-text-palette-3-base u-text-1">Menu</h1>
+              <p class="u-text u-text-2 text-white">A continuación presentamos platos típicos de la comida ecuatoriana
+                que este establecimiento ofrece:</p>
+              <div class="card u-expanded-width-xs u-list u-list-1">
+                <div class="u-repeater u-repeater-1">
+                  <% if (platillos.length> 0) { %>
+                    <% platillos.forEach(p=> { %>
+                      <% if (p.estado=true) { %>
+                      <div
+                        class="card u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-2">
+                        <div
+                          class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
+                          <img alt="" class="u-expanded-width-xs u-image u-image-default u-image-2"
+                            src="<%= p.url %>">
+                          <div
+                            class="u-align-left-xs u-container-style u-expanded-width-xs u-group u-video-cover u-group-2">
+                            <div class="u-container-layout u-valign-middle-xl u-valign-middle-xs u-container-layout-4">
+                              <h3 class="u-custom-font u-font-oswald u-text u-text-3">
+                                <%= p.nombre %>
+                              </h3>
+                              <p class="u-text u-text-7">
+                                <%= p.descripcion %>
+                              </p>
+                              <h6 class="u-text u-text-palette-3-base u-text-3">
+                                <%= p.precio %>
+                              </h6>
+                              <% if(user) {%>
+                                <a href="/add-to-cart/<%= p._id %>"
+                                  class="btn btn-success ">
+                                  <i class="fa fa-cart-plus"></i>
+                                  Añadir al carrito</a>
+                                  <% } else {%>
+                                    <a
+                                    class="btn btn-success ">
+                                      <i class="fa fa-cart-plus"></i>
+                                      Ingresa para comprar</a>
+                                    <% }%>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <%} %>
+                      <% }) %>
+                        <% } %>
+                </div>
+              </div>
+            </div>
+          </section>
+          <br>
+
+        </div>
+      </div>
+
+      <footer class="footer footer-default">
+        <div class="container">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="/">
+                  Ir a la página principal
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Registrarse
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Licencia
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by UNL students.
+          </div>
+        </div>
+      </footer>
+  </body>
+
+</html>
